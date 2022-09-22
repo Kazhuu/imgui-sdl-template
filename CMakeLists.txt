@@ -60,6 +60,7 @@ target_include_directories(
     ${EXECUTABLE}
     PRIVATE ${IMGUI_SOURCES_DIR}
     PRIVATE ${IMGUI_SOURCES_DIR}/backends
+    PUBLIC ${SDL2_INCLUDE_DIRS}
 )
 
 # On Windows MSYS2 link libraries statically to the binary. This way binary can
@@ -68,16 +69,9 @@ target_include_directories(
 if (MSYS2)
     target_link_libraries(${EXECUTABLE} ${SDL2_STATIC_LIBRARIES} OpenGL::GL)
     target_link_libraries(${EXECUTABLE} -static)
-    target_include_directories(
-        ${EXECUTABLE}
-        PUBLIC ${SDL2_STATIC_INCLUDE_DIRS}
-    )
+
 else()
     target_link_libraries(${EXECUTABLE} ${SDL2_LIBRARIES} OpenGL::GL)
-    target_include_directories(
-        ${EXECUTABLE}
-        PUBLIC ${SDL2_INCLUDE_DIRS}
-    )
 endif()
 
 target_compile_options(${EXECUTABLE} PUBLIC ${SDL2_CFLAGS_OTHER})
