@@ -22,7 +22,7 @@ int main(int, char**)
     // Hide terminal window on Windows that is displayed alongside with IMGUI window.
     // Copied from https://www.daniweb.com/programming/software-development/threads/351046/sdl-hide-console
     HWND windowHandle = GetConsoleWindow();
-    ShowWindow(windowHandle,SW_HIDE);
+    ShowWindow(windowHandle, SW_HIDE);
 #endif
 
     // Setup SDL
