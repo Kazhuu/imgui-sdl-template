@@ -11,7 +11,6 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS True)
 execute_process(COMMAND uname OUTPUT_VARIABLE uname)
 if (uname MATCHES "^MSYS" OR uname MATCHES "^MINGW")
     set(MSYS2 TRUE)
-    add_compile_definitions(MSYS2)
     message(STATUS "This is MSYS")
 else()
     set(MSYS2 FALSE)
@@ -49,9 +48,11 @@ find_package(OpenGL REQUIRED)
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(SDL2 REQUIRED sdl2)
 
-# Executable
+# Executable and set WIN32 to make sure it's GUI application, not console application.
+# Console application in this case means that on Windows, starting the program will open
+# terminal window beside the GUI application.
 set(EXECUTABLE imgui_example)
-add_executable(${EXECUTABLE})
+add_executable(${EXECUTABLE} WIN32)
 target_sources(${EXECUTABLE} PUBLIC ${HEADERS} PRIVATE ${IMGUI_SOURCES} ${SOURCES})
 
 # Enable compiler warnings.

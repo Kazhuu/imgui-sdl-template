@@ -17,14 +17,6 @@
 // Main code
 int main(int, char**)
 {
-
-#ifdef MSYS2
-    // Hide terminal window on Windows that is displayed alongside with IMGUI window.
-    // Copied from https://www.daniweb.com/programming/software-development/threads/351046/sdl-hide-console
-    HWND windowHandle = GetConsoleWindow();
-    ShowWindow(windowHandle, SW_HIDE);
-#endif
-
     // Setup SDL
     // (Some versions of SDL before <2.0.10 appears to have performance/stalling issues on a minority of Windows systems,
     // depending on whether SDL_INIT_GAMECONTROLLER is enabled or disabled.. updating to latest version of SDL is recommended!)
